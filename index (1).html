@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hạt Tươi Cafe – Cà phê rang xay</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2ec;--surface:#fff;--ink:#1b2a22;--muted:#56665c;--accent:#e0a526;--accent-ink:#1b2a22;--sage:#6f8f7a;--line:#d3dccf;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14201a;--surface:#1d2c24;--ink:#eef2ec;--muted:#a3b3a8;--line:#2d3f35}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14201a;--surface:#1d2c24;--ink:#eef2ec;--muted:#a3b3a8;--line:#2d3f35}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 0}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.01em}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cartbtn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:8px 18px;font-weight:500}
+.hero{padding:48px 0 40px;display:grid;gap:28px;grid-template-columns:1.2fr 1fr;align-items:center}
+.hero h1{font-size:clamp(34px,6vw,60px);line-height:1.08;margin:0 0 16px;font-weight:800;letter-spacing:-.02em}
+.hero p{max-width:46ch;color:var(--muted);margin:0 0 24px}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 24px;font-weight:700;text-decoration:none}
+.sun{aspect-ratio:1;max-width:360px;width:100%;justify-self:center;border-radius:50%;background:var(--accent);position:relative;display:grid;place-items:center}
+.sun::after{content:"";width:46%;height:62%;background:var(--ink);border-radius:50% 50% 50% 50%/60% 60% 40% 40%;transform:rotate(18deg)}
+.sun::before{content:"";position:absolute;width:5%;height:52%;background:var(--accent);border-radius:99px;transform:rotate(18deg);z-index:1}
+h2{font-size:28px;margin:48px 0 20px;letter-spacing:-.01em}
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column}
+.bag{height:140px;border-radius:10px;margin-bottom:14px;display:grid;place-items:center;font-weight:800;font-size:22px;color:#fff}
+.card h3{margin:0 0 4px;font-size:18px}
+.card p{margin:0 0 14px;color:var(--muted);font-size:14px;flex:1}
+.row{display:flex;justify-content:space-between;align-items:center}
+.price{font-weight:700}
+.add{background:transparent;color:var(--ink);border:2px solid var(--ink);border-radius:8px;padding:6px 14px;font-weight:700}
+.add:hover{background:var(--ink);color:var(--bg)}
+.why{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.why div{border-left:4px solid var(--sage);padding-left:14px}
+.why strong{display:block}
+.why span{color:var(--muted);font-size:14px}
+footer{margin:64px 0 32px;color:var(--muted);font-size:14px}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);border-left:1px solid var(--line);padding:calc(20px + env(safe-area-inset-top,0px)) 20px calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column;z-index:20;overflow-y:auto}
+aside.open{transform:none}
+aside h2{margin:0 0 12px;font-size:22px}
+.close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px;background:none;border:0;color:var(--ink);font-size:24px}
+.item{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.qty button{width:28px;height:28px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.qty span{display:inline-block;min-width:24px;text-align:center}
+.total{display:flex;justify-content:space-between;font-weight:700;font-size:18px;margin:16px 0}
+input{width:100%;padding:11px 12px;margin-bottom:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.full{width:100%}
+.msg{color:var(--muted)}
+.ok{background:var(--accent);color:var(--accent-ink);padding:14px;border-radius:10px;font-weight:500}
+.sum{display:flex;align-items:baseline;gap:10px;margin:-8px 0 18px;color:var(--muted)}
+.sum b{font-size:34px;color:var(--ink)}
+.star{color:var(--accent);letter-spacing:2px}
+.rv{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.rv p{margin:6px 0 10px}
+.rv small{color:var(--muted)}
+.survey{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;max-width:640px}
+.survey h3{margin:0 0 4px;font-size:20px}
+.q{margin:18px 0 6px;font-weight:500}
+.stars{display:flex;align-items:center;gap:2px}
+.stars button{background:none;border:0;font-size:30px;line-height:1;padding:2px 4px;color:var(--line);min-width:40px;min-height:40px}
+.stars button.on{color:var(--accent)}
+.stars em{font-style:normal;color:var(--muted);font-size:14px;margin-left:8px}
+textarea,select{width:100%;padding:11px 12px;margin-bottom:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:90px;resize:vertical}
+.survey .cta{margin-top:8px}
+#sErr{color:#c0392b;margin:8px 0 0}
+#sOk{margin-top:14px}
+.bar{background:var(--ink);color:var(--bg);text-align:center;font-size:14px;padding:8px 16px}
+.bag{display:block;width:100%;height:150px;background:var(--bg);border-radius:10px;margin-bottom:14px}
+.story{display:grid;gap:28px;grid-template-columns:1fr 1.1fr;align-items:center}
+.story svg{width:100%;height:auto;border-radius:14px;display:block}
+.story h2{margin-top:0}
+.story p{color:var(--muted);margin:0 0 12px;max-width:56ch}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-bottom:10px;max-width:720px}
+summary{cursor:pointer;font-weight:500}
+details p{margin:10px 0 0;color:var(--muted)}
+.zalo{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;background:#0068ff;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.zalo:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.contact a{color:inherit}
+.cta:disabled{opacity:.6;cursor:wait}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.ok .cta{background:var(--ink);color:var(--bg);padding:10px 16px;font-size:14px;margin:0;text-align:center}
+.ok .cta.alt{background:transparent;color:var(--accent-ink);border:2px solid var(--ink)}
+.ok textarea{min-height:130px;margin-bottom:10px;font-size:14px}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.sun{max-width:220px;order:-1}.story{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){aside{transition:none}}
+</style>
+</head>
+<body>
+<div class="bar">Miễn phí vận chuyển cho đơn từ 300.000đ. Rang theo đơn, giao trong 2–3 ngày.</div>
+<div class="wrap">
+<header><div class="logo">Hạt Tươi Cafe</div><button class="cartbtn" id="open">Giỏ hàng (<span id="count">0</span>)</button></header>
+
+<section class="hero">
+<div>
+<h1>Cà phê rang mới mỗi tuần, gửi tận nhà</h1>
+<p>Hạt cà phê từ Đắk Lắk và Lâm Đồng, rang theo đơn đặt và đóng gói trong ngày. Giao toàn quốc trong 2–3 ngày.</p>
+<a class="cta" href="#sanpham">Xem sản phẩm</a>
+</div>
+<div class="sun" aria-hidden="true"></div>
+</section>
+
+<h2 id="sanpham">Sản phẩm</h2>
+<div class="grid" id="grid"></div>
+
+<section class="story">
+<svg viewBox="0 0 400 260" role="img" aria-label="Đồi cà phê dưới ánh nắng"><rect width="400" height="260" fill="#f4e3ad"/><circle cx="290" cy="95" r="46" fill="#e0a526"/><path d="M0 170 Q100 110 200 160 T400 140 V260 H0Z" fill="#8fae98"/><path d="M0 210 Q120 150 240 200 T400 190 V260 H0Z" fill="#5d8470"/><g fill="#2f4a3a"><circle cx="60" cy="205" r="7"/><circle cx="100" cy="198" r="7"/><circle cx="140" cy="200" r="7"/><circle cx="260" cy="212" r="7"/><circle cx="300" cy="210" r="7"/><circle cx="340" cy="204" r="7"/></g><path d="M0 245 Q150 205 400 235 V260 H0Z" fill="#2f4a3a"/></svg>
+<div>
+<h2>Câu chuyện của Hạt Tươi</h2>
+<p>Hạt Tươi bắt đầu từ một ý đơn giản: cà phê ngon nhất là cà phê vừa rang xong. Vì vậy mình không rang sẵn để trữ kho. Mỗi đơn hàng được rang riêng, rang xong là đóng gói và gửi đi ngay.</p>
+<p>Hạt được chọn trực tiếp từ các hộ làm vườn nhỏ ở Đắk Lắk và Lâm Đồng, mua với giá công bằng để họ yên tâm giữ chất lượng qua từng mùa.</p>
+<p>Mình rang vừa phải để giữ vị tự nhiên của hạt, không ướp hương liệu hay thêm phụ gia.</p>
+</div>
+</section>
+
+
+
+
+
+<h2 id="khaosat">Chia sẻ trải nghiệm của bạn</h2>
+<div class="survey">
+<h3>Khảo sát mức độ hài lòng</h3>
+<p class="msg" style="margin:0">Mất chưa đến 1 phút. Góp ý của bạn giúp mình pha chế và chọn hạt ngon hơn.</p>
+<div class="q">Bạn đã dùng sản phẩm nào?</div>
+<select id="sProd" aria-label="Sản phẩm đã dùng"></select>
+<div class="q">Mức độ hài lòng chung</div>
+<div class="stars" data-k="overall" role="radiogroup" aria-label="Mức độ hài lòng chung"></div>
+<div class="q">Hương vị</div>
+<div class="stars" data-k="taste" role="radiogroup" aria-label="Hương vị"></div>
+<div class="q">Mùi thơm</div>
+<div class="stars" data-k="aroma" role="radiogroup" aria-label="Mùi thơm"></div>
+<div class="q">Giá cả so với chất lượng</div>
+<div class="stars" data-k="value" role="radiogroup" aria-label="Giá cả so với chất lượng"></div>
+<div class="q">Bạn có giới thiệu cho người quen không?</div>
+<select id="sRec" aria-label="Giới thiệu cho người quen"><option value="">Chọn một đáp án</option><option>Chắc chắn có</option><option>Có thể</option><option>Chưa chắc</option><option>Không</option></select>
+<div class="q">Nhận xét thêm (không bắt buộc)</div>
+<textarea id="sText" placeholder="Ví dụ: pha phin rất thơm, vị đậm vừa ý..."></textarea>
+<input id="sName" placeholder="Tên của bạn (không bắt buộc)" autocomplete="name">
+<button class="cta" id="sSend">Gửi đánh giá</button>
+<p id="sErr" role="alert"></p>
+<div class="ok" id="sOk" hidden></div>
+</div>
+
+<h2>Vì sao chọn Hạt Tươi</h2>
+<div class="why">
+<div><strong>Rang theo đơn</strong><span>Bạn đặt, mình mới rang. Không tồn kho lâu.</span></div>
+<div><strong>Giao 2–3 ngày</strong><span>Miễn phí vận chuyển cho đơn từ 300.000đ.</span></div>
+<div><strong>Đổi trả trong 7 ngày</strong><span>Không hợp vị, mình đổi gói khác cho bạn.</span></div>
+</div>
+
+<h2 id="hoidap">Câu hỏi thường gặp</h2>
+<details><summary>Phí vận chuyển là bao nhiêu?</summary><p>Miễn phí cho đơn từ 300.000đ. Đơn nhỏ hơn tính 25.000đ trên toàn quốc, giao trong 2–3 ngày.</p></details>
+<details><summary>Mình nên chọn loại cà phê nào?</summary><p>Pha phin hoặc làm cà phê sữa thì chọn Robusta hoặc Culi. Thích vị chua thanh, pha máy hoặc pour over thì chọn Arabica. Chưa biết chọn gì thì thử Blend Sáng Sớm.</p></details>
+<details><summary>Có bán loại xay sẵn không?</summary><p>Có. Bạn nhắn kiểu pha (phin, máy, moka...) qua Zalo, mình sẽ xay đúng độ mịn cho bạn.</p></details>
+<details><summary>Bảo quản và hạn dùng thế nào?</summary><p>Hạn dùng 6 tháng kể từ ngày rang. Sau khi mở, bạn đóng kín túi, để nơi khô mát, tránh nắng và nên dùng hết trong 30 ngày để giữ mùi thơm.</p></details>
+<details><summary>Thanh toán bằng cách nào?</summary><p>Bạn có thể trả tiền khi nhận hàng (COD) hoặc chuyển khoản. Mình sẽ gửi thông tin khi gọi xác nhận đơn.</p></details>
+<details><summary>Shop mở cửa lúc mấy giờ?</summary><p>Hạt Tươi Cafe mở cửa mỗi ngày từ 7:00 sáng đến 2:00 sáng.</p></details>
+<details><summary>Đổi trả ra sao?</summary><p>Trong 7 ngày kể từ khi nhận hàng, nếu sản phẩm bị lỗi hoặc không hợp vị, mình đổi gói khác cho bạn.</p></details>
+
+<footer class="contact"><strong>Hạt Tươi Cafe</strong><br>Mở cửa mỗi ngày từ 7:00 sáng đến 2:00 sáng<br>Đặt hàng và tư vấn qua Zalo hoặc điện thoại<br>Điện thoại/Zalo: <a href="tel:0367308856">0367 308 856</a><br>Email: <a href="mailto:nguyendaiphat290428@gmail.com">nguyendaiphat290428@gmail.com</a></footer>
+<a class="zalo" href="https://zalo.me/0367308856" target="_blank" rel="noopener">Chat Zalo</a>
+</div>
+
+<aside id="panel" aria-label="Giỏ hàng">
+<button class="close" id="close" aria-label="Đóng giỏ hàng">×</button>
+<h2>Giỏ hàng</h2>
+<div id="items"></div>
+<div id="checkout" hidden>
+<div class="total"><span>Tổng cộng</span><span id="total"></span></div>
+<input id="name" placeholder="Họ và tên" autocomplete="name">
+<input id="phone" placeholder="Số điện thoại" autocomplete="tel" inputmode="tel">
+<input id="addr" placeholder="Địa chỉ nhận hàng" autocomplete="street-address">
+<button class="cta full" id="order">Đặt hàng</button>
+<p class="msg" id="err" role="alert"></p>
+</div>
+<div id="done" class="ok" hidden></div>
+</aside>
+
+<script>
+var PRODUCTS=[
+{id:1,name:"Robusta Đắk Lắk",desc:"Đậm, béo, hậu vị cacao. Hợp pha phin và cà phê sữa.",price:120000,color:"#3b2a1e"},
+{id:2,name:"Arabica Cầu Đất",desc:"Chua thanh, thơm hoa quả. Hợp pha máy và pour over.",price:185000,color:"#6b3f2a"},
+{id:3,name:"Blend Sáng Sớm",desc:"70% Robusta, 30% Arabica. Cân bằng, dễ uống mỗi ngày.",price:150000,color:"#8a5a2b"},
+{id:4,name:"Culi Cao Nguyên",desc:"Hạt tròn, vị mạnh và thơm lâu. Dành cho người thích đậm.",price:165000,color:"#2f4a3a"}
+];
+function bagSvg(p){var w=p.name.split(" "),a=w[0],b=w.slice(1).join(" ");
+return '<svg class="bag" viewBox="0 0 200 140" role="img" aria-label="Gói '+p.name+'"><ellipse cx="100" cy="130" rx="52" ry="5" fill="#000" fill-opacity=".14"/><rect x="45" y="20" width="110" height="106" rx="8" fill="'+p.color+'"/><rect x="45" y="20" width="110" height="14" rx="6" fill="#000" fill-opacity=".22"/><rect x="57" y="48" width="86" height="66" rx="5" fill="#f6efe0"/><circle cx="100" cy="63" r="7" fill="#e0a526"/><text x="100" y="88" text-anchor="middle" font-size="12" font-weight="800" fill="#1b2a22">'+a+'</text><text x="100" y="103" text-anchor="middle" font-size="10" fill="#56665c">'+b+'</text></svg>'}
+var cart={};
+var fmt=function(n){return n.toLocaleString("vi-VN")+"đ"};
+var $=function(id){return document.getElementById(id)};
+
+$("grid").innerHTML=PRODUCTS.map(function(p){
+return '<div class="card">'+bagSvg(p)+'<h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="row"><span class="price">'+fmt(p.price)+'</span><button class="add" data-id="'+p.id+'">Thêm vào giỏ</button></div></div>'}).join("");
+
+function render(){
+var ids=Object.keys(cart),n=0,t=0;
+$("items").innerHTML=ids.length?ids.map(function(id){
+var p=PRODUCTS.filter(function(x){return x.id==id})[0],q=cart[id];n+=q;t+=q*p.price;
+return '<div class="item"><div><strong>'+p.name+'</strong><br><span class="msg">'+fmt(p.price)+'</span></div><div class="qty"><button data-d="-1" data-id="'+id+'" aria-label="Giảm">−</button><span>'+q+'</span><button data-d="1" data-id="'+id+'" aria-label="Tăng">+</button></div></div>'}).join(""):'<p class="msg">Giỏ hàng đang trống. Chọn một gói cà phê để bắt đầu.</p>';
+$("count").textContent=n;$("total").textContent=fmt(t);
+$("checkout").hidden=!ids.length;
+}
+function setOpen(v){$("panel").classList.toggle("open",v)}
+
+document.addEventListener("click",function(e){
+var b=e.target.closest("button");if(!b)return;
+if(b.classList.contains("add")){var id=b.dataset.id;cart[id]=(cart[id]||0)+1;$("done").hidden=true;render();setOpen(true)}
+if(b.dataset.d){var i=b.dataset.id;cart[i]+=+b.dataset.d;if(cart[i]<1)delete cart[i];render()}
+});
+$("open").onclick=function(){setOpen(true)};
+$("close").onclick=function(){setOpen(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")setOpen(false)});
+$("order").onclick=function(){
+var nm=$("name").value.trim(),ph=$("phone").value.trim(),ad=$("addr").value.trim();
+if(!nm||!/^[0-9 +.]{9,13}$/.test(ph)||!ad){$("err").textContent="Hãy nhập đủ họ tên, số điện thoại hợp lệ và địa chỉ.";return}
+$("err").textContent="";
+var btn=$("order"),txt=orderText(nm,ph,ad),total=cartTotal();
+btn.disabled=true;btn.textContent="Đang gửi đơn...";
+sendToShop({type:"order",name:nm,phone:ph,address:ad,total:total,detail:txt},
+function(){btn.disabled=false;btn.textContent="Đặt hàng";$("done").textContent="Đã nhận đơn, "+nm+"! Mình sẽ gọi xác nhận qua số "+ph+" trong ít phút.";$("done").hidden=false;cart={};render()},
+function(){btn.disabled=false;btn.textContent="Đặt hàng";deliver('done',txt,'Đơn hàng mới từ website Hạt Tươi Cafe','Chưa gửi tự động được, '+esc(nm)+' ơi. Bấm “Mở Zalo”, dán nội dung này vào khung chat rồi gửi giúp mình nhé.');$("done").hidden=false;cart={};render()});
+};
+render();
+
+var score={},LABELS=["","Rất không hài lòng","Chưa hài lòng","Bình thường","Hài lòng","Rất hài lòng"];
+var stars=function(n){return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)};
+var esc=function(s){var d=document.createElement("div");d.textContent=s;return d.innerHTML};
+
+
+$("sProd").innerHTML='<option value="">Chọn sản phẩm</option>'+PRODUCTS.map(function(p){return '<option>'+p.name+'</option>'}).join("");
+
+function drawStars(box){
+var k=box.dataset.k,v=score[k]||0,h="";
+for(var i=1;i<=5;i++)h+='<button type="button" role="radio" aria-checked="'+(i===v)+'" aria-label="'+i+' sao" data-v="'+i+'" class="'+(i<=v?"on":"")+'">★</button>';
+box.innerHTML=h+'<em>'+LABELS[v]+'</em>';
+}
+var boxes=document.querySelectorAll(".stars");
+boxes.forEach(function(b){drawStars(b);b.addEventListener("click",function(e){
+var t=e.target.closest("button");if(!t)return;
+score[b.dataset.k]=+t.dataset.v;drawStars(b)})});
+
+var APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbynIS1eNya5rH_8cOvY11oSMAahCHz5bAS9oqm2DzxFNphnU8Ry761FhiWcLcDOve6V5w/exec";
+function sendToShop(payload,onOk,onFail){
+if(!APPS_SCRIPT_URL){onFail();return}
+fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(payload)})
+.then(function(r){return r.json()})
+.then(function(j){if(j&&j.ok)onOk();else onFail()})
+.catch(onFail)
+}
+function cartTotal(){return Object.keys(cart).reduce(function(a,id){return a+cart[id]*PRODUCTS.filter(function(x){return x.id==id})[0].price},0)}
+function orderText(nm,ph,ad){var t=0,l=Object.keys(cart).map(function(id){var p=PRODUCTS.filter(function(x){return x.id==id})[0],s=cart[id]*p.price;t+=s;return '- '+p.name+' x'+cart[id]+': '+fmt(s)}).join('\n');
+return 'ĐƠN HÀNG MỚI - Hạt Tươi Cafe\n'+l+'\nTổng cộng: '+fmt(t)+'\nHọ tên: '+nm+'\nSĐT: '+ph+'\nĐịa chỉ: '+ad}
+
+function deliver(id,text,subject,intro){
+var mail='mailto:nguyendaiphat290428@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(text);
+$(id).innerHTML='<p style="margin:0 0 10px">'+intro+'</p><textarea readonly aria-label="Nội dung cần gửi">'+esc(text)+'</textarea><div class="acts"><button type="button" class="cta" data-copy="1">Sao chép nội dung</button><a class="cta alt" href="https://zalo.me/0367308856" target="_blank" rel="noopener">Mở Zalo</a><a class="cta alt" href="'+mail+'">Gửi email</a></div>';
+try{navigator.clipboard.writeText(text).catch(function(){})}catch(e){}
+}
+
+document.addEventListener('click',function(e){
+var b=e.target.closest('[data-copy]');if(!b)return;
+var ta=b.closest('.ok').querySelector('textarea');
+
+function fin(ok){b.textContent=ok?'Đã sao chép':'Đã chọn sẵn, hãy sao chép thủ công'}
+try{navigator.clipboard.writeText(ta.value).then(function(){fin(true)},function(){ta.select();fin(false)})}catch(x){ta.select();fin(false)}
+});
+
+$('sSend').onclick=function(){
+var prod=$('sProd').value;
+if(!prod||!score.overall){$('sErr').textContent='Hãy chọn sản phẩm và mức độ hài lòng chung.';return}
+$('sErr').textContent='';
+var nm=$('sName').value.trim()||'Khách ẩn danh',rec=$('sRec').value||'Không trả lời',tx=$('sText').value.trim()||'Không có';
+var t='GÓP Ý VỀ SẢN PHẨM - Hạt Tươi Cafe\nSản phẩm: '+prod+'\nHài lòng chung: '+score.overall+'/5\nHương vị: '+(score.taste||'-')+'/5\nMùi thơm: '+(score.aroma||'-')+'/5\nGiá cả so với chất lượng: '+(score.value||'-')+'/5\nGiới thiệu cho người quen: '+rec+'\nNhận xét: '+tx+'\nTừ: '+nm;
+var sb=$('sSend');sb.disabled=true;
+sendToShop({type:'gopy',name:nm,detail:t},
+function(){sb.disabled=false;$('sOk').textContent='Cảm ơn bạn đã góp ý! Mình đã nhận được.';$('sOk').hidden=false},
+function(){sb.disabled=false;deliver('sOk',t,'Góp ý về sản phẩm Hạt Tươi Cafe','Chưa gửi tự động được. Bấm “Mở Zalo” hoặc “Gửi email” để gửi góp ý cho mình nhé.');$('sOk').hidden=false});
+};
+</script>
+</body>
+</html>
