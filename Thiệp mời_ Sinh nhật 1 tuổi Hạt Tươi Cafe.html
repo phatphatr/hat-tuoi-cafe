@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiệp mời: Sinh nhật 1 tuổi Hạt Tươi Cafe</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f1fb;--surface:#fff;--ink:#1f1a3d;--muted:#5d5880;--accent:#e8556d;--accent-ink:#fff;--gold:#f0b429;--line:#ddd7f0;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14122b;--surface:#1f1c3d;--ink:#f1eefc;--muted:#aaa5cc;--line:#332f5c}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14122b;--surface:#1f1c3d;--ink:#f1eefc;--muted:#aaa5cc;--line:#332f5c}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:640px;margin:0 auto;padding:0 20px 48px}
+.hero{text-align:center;padding:56px 0 32px;position:relative}
+.tag{display:inline-block;background:var(--accent);color:var(--accent-ink);font-weight:700;font-size:13px;letter-spacing:.14em;padding:6px 16px;border-radius:999px}
+h1{font-family:"Playfair Display",Georgia,serif;font-size:clamp(36px,9vw,58px);line-height:1.1;margin:20px 0 12px;font-weight:800}
+.sub{color:var(--muted);max-width:44ch;margin:0 auto}
+.dots{display:flex;justify-content:center;gap:10px;margin-top:24px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.dots i:nth-child(2){background:var(--accent)}
+.dots i:nth-child(3){background:var(--ink)}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:8px 0 8px}
+.count div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 4px;text-align:center}
+.count b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:32px;line-height:1.1}
+.count span{font-size:12px;color:var(--muted)}
+#done{text-align:center;color:var(--accent);font-weight:700;margin:0}
+h2{font-family:"Playfair Display",Georgia,serif;font-size:26px;margin:40px 0 16px}
+.info{display:grid;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:center}
+.card .ic{width:44px;height:44px;border-radius:12px;background:var(--gold);color:#1f1a3d;display:grid;place-items:center;font-weight:800;flex:none}
+.card small{color:var(--muted);display:block}
+.card strong{font-size:17px}
+.tl{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--line)}
+.tl li{position:relative;padding:0 0 18px 18px}
+.tl li::before{content:"";position:absolute;left:-27px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--accent)}
+.tl b{display:block}
+.tl span{color:var(--muted);font-size:14px}
+.rsvp{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+label{display:block;font-weight:500;margin:0 0 6px}
+input,select{width:100%;padding:12px;margin-bottom:14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.yes{flex:1;min-width:150px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px 18px;font-weight:700}
+.no{flex:1;min-width:150px;background:transparent;color:var(--ink);border:2px solid var(--ink);border-radius:10px;padding:11px 18px;font-weight:700}
+#msg{margin:14px 0 0;font-weight:500;min-height:1.6em}
+.note{color:var(--muted);font-size:13px;margin-top:6px}
+footer{text-align:center;color:var(--muted);font-size:14px;margin-top:40px}
+.badge{display:grid;place-items:center;width:84px;height:84px;margin:0 auto 18px;border-radius:50%;background:var(--gold);color:#1f1a3d;font-family:"Playfair Display",Georgia,serif;font-size:40px;font-weight:800;line-height:1}
+.badge small{font-family:"Be Vietnam Pro",system-ui,sans-serif;font-size:11px;font-weight:700;margin-top:-10px}
+.map{display:inline-block;margin-top:4px;color:var(--accent);font-weight:700;text-decoration:none}
+.map:hover{text-decoration:underline}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px}
+.btn{flex:1;min-width:150px;text-align:center;text-decoration:none;background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:12px 16px;font-weight:700;display:inline-block}
+.btn.alt{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:10px 16px}
+#shareMsg{margin:8px 0 0;color:var(--muted);font-size:14px;min-height:1.4em;word-break:break-all}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.gal figure{margin:0}
+.gal svg{width:100%;height:auto;border-radius:12px;display:block}
+.gal figcaption{font-size:12px;color:var(--muted);text-align:center;margin-top:4px}
+.galnote{color:var(--muted);font-size:13px;margin:10px 0 0}
+textarea{width:100%;padding:12px;margin-bottom:14px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;min-height:100px;resize:vertical}
+textarea:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.rsvp a{color:var(--accent);font-weight:700}
+button:disabled{opacity:.6;cursor:wait}
+@media(max-width:420px){.count b{font-size:26px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hero">
+<div class="badge" aria-hidden="true">1<small>tuổi</small></div><span class="tag">BẠN ĐƯỢC MỜI</span>
+<h1>Sinh nhật 1 tuổi của Hạt Tươi Cafe</h1>
+<p class="sub">Một năm đã trôi qua với biết bao ly cà phê thơm. Cùng Hạt Tươi thổi nến, thưởng thức bánh ngọt và cà phê rang mới trong một buổi tối chung vui.</p>
+<div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+</header>
+
+<div class="count" role="timer" aria-label="Đếm ngược đến buổi tiệc">
+<div><b id="d">0</b><span>ngày</span></div>
+<div><b id="h">0</b><span>giờ</span></div>
+<div><b id="m">0</b><span>phút</span></div>
+<div><b id="s">0</b><span>giây</span></div>
+</div>
+<p id="done" hidden>Buổi tiệc đã diễn ra rồi, hẹn gặp bạn dịp sau!</p>
+
+<h2>Thông tin buổi tiệc</h2>
+<div class="info">
+<div class="card"><div class="ic">NGÀY</div><div><small>Ngày</small><strong>Chủ Nhật, 22/11/2026</strong></div></div>
+<div class="card"><div class="ic">GIỜ</div><div><small>Giờ</small><strong>18:00 đến 21:00</strong></div></div>
+<div class="card"><div class="ic">NƠI</div><div><small>Địa điểm</small><strong>Hạt Tươi Cafe</strong><div>23 Nguyễn Văn Trỗi, thành phố Vinh</div><a class="map" href="https://www.google.com/maps/search/?api=1&amp;query=23%20Nguy%E1%BB%85n%20V%C4%83n%20Tr%E1%BB%97i%2C%20th%C3%A0nh%20ph%E1%BB%91%20Vinh%2C%20Ngh%E1%BB%87%20An" target="_blank" rel="noopener">Mở bản đồ</a></div></div>
+</div>
+
+<div class="info" style="margin-top:12px">
+<div class="card"><div class="ic">QUÀ</div><div><small>Ưu đãi</small><strong>Tặng 1 ly cà phê cho mỗi khách đến dự</strong></div></div>
+<div class="card"><div class="ic">ÁO</div><div><small>Gợi ý trang phục</small><strong>Tông vàng hoặc nâu cà phê</strong></div></div>
+</div>
+<div class="acts">
+<a class="btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Sinh%20nh%E1%BA%ADt%201%20tu%E1%BB%95i%20H%E1%BA%A1t%20T%C6%B0%C6%A1i%20Cafe&amp;dates=20261122T180000%2F20261122T210000&amp;ctz=Asia%2FHo_Chi_Minh&amp;details=C%C3%B9ng%20H%E1%BA%A1t%20T%C6%B0%C6%A1i%20th%E1%BB%95i%20n%E1%BA%BFn%2C%20th%C6%B0%E1%BB%9Fng%20th%E1%BB%A9c%20b%C3%A1nh%20ng%E1%BB%8Dt%20v%C3%A0%20c%C3%A0%20ph%C3%AA%20rang%20m%E1%BB%9Bi.&amp;location=H%E1%BA%A1t%20T%C6%B0%C6%A1i%20Cafe%2C%2023%20Nguy%E1%BB%85n%20V%C4%83n%20Tr%E1%BB%97i%2C%20th%C3%A0nh%20ph%E1%BB%91%20Vinh%2C%20Ngh%E1%BB%87%20An" target="_blank" rel="noopener">Thêm vào lịch</a>
+<button class="btn alt" id="share" type="button">Chia sẻ thiệp</button>
+</div>
+<p id="shareMsg" role="status"></p>
+
+<h2>Chương trình</h2>
+<ul class="tl">
+<li><b>18:00 Đón khách</b><span>Nhận đồ uống chào mừng và chọn chỗ ngồi.</span></li>
+<li><b>18:30 Thổi nến và cắt bánh</b><span>Cùng chúc mừng Hạt Tươi tròn 1 tuổi.</span></li>
+<li><b>19:15 Thưởng thức cà phê</b><span>Thử các loại cà phê rang mới của quán.</span></li>
+<li><b>19:45 Trò chơi và quà nhỏ</b><span>Vài trò chơi vui, ai cũng có quà mang về.</span></li>
+<li><b>21:00 Chụp ảnh chung</b><span>Lưu lại khoảnh khắc 1 tuổi của quán.</span></li>
+</ul>
+
+<h2>Một năm của Hạt Tươi</h2>
+<div class="gal">
+<figure><svg viewBox="0 0 200 150" role="img" aria-label="Mặt tiền quán"><rect width="200" height="150" fill="#f4e3ad"/><rect x="60" y="8" width="80" height="20" rx="4" fill="#1f1a3d"/><text x="100" y="22" text-anchor="middle" font-size="10" font-weight="700" fill="#f0b429">HẠT TƯƠI</text><rect x="25" y="32" width="150" height="26" fill="#e8556d"/><g fill="#fff"><rect x="45" y="32" width="15" height="26"/><rect x="75" y="32" width="15" height="26"/><rect x="105" y="32" width="15" height="26"/><rect x="135" y="32" width="15" height="26"/></g><rect x="35" y="58" width="130" height="72" fill="#fff"/><rect x="85" y="78" width="30" height="52" fill="#1f1a3d"/><rect x="45" y="72" width="30" height="30" fill="#bfe3ee"/><rect x="125" y="72" width="30" height="30" fill="#bfe3ee"/><rect x="0" y="130" width="200" height="20" fill="#8b7ec0"/></svg><figcaption>Mặt tiền quán</figcaption></figure>
+<figure><svg viewBox="0 0 200 150" role="img" aria-label="Ly cà phê"><rect width="200" height="150" fill="#dcd6f3"/><path d="M70 40q4-12 0-24M100 40q4-12 0-30M130 40q4-12 0-24" fill="none" stroke="#8b7ec0" stroke-width="4" stroke-linecap="round"/><path d="M52 58h96v34a40 36 0 0 1-96 0z" fill="#fff"/><path d="M148 66h10a14 14 0 0 1 0 28h-14" fill="none" stroke="#fff" stroke-width="8"/><ellipse cx="100" cy="58" rx="48" ry="8" fill="#6b3f2a"/><ellipse cx="100" cy="132" rx="70" ry="9" fill="#1f1a3d" opacity=".25"/></svg><figcaption>Ly cà phê</figcaption></figure>
+<figure><svg viewBox="0 0 200 150" role="img" aria-label="Bánh sinh nhật"><rect width="200" height="150" fill="#f9d5dc"/><rect x="95" y="22" width="10" height="30" fill="#f0b429"/><ellipse cx="100" cy="16" rx="6" ry="9" fill="#e8556d"/><rect x="40" y="52" width="120" height="30" rx="6" fill="#fff"/><rect x="30" y="82" width="140" height="44" rx="6" fill="#6b3f2a"/><text x="100" y="114" text-anchor="middle" font-size="24" font-weight="800" fill="#f0b429">1</text><rect x="20" y="126" width="160" height="6" rx="3" fill="#1f1a3d" opacity=".25"/></svg><figcaption>Bánh sinh nhật</figcaption></figure>
+</div>
+<p class="galnote">Đây là hình minh họa, hãy thay bằng ảnh thật của quán.</p>
+
+<h2>Bạn có đến được không?</h2>
+<div class="rsvp">
+<label for="name">Tên của bạn</label>
+<input id="name" placeholder="Ví dụ: Minh Anh" autocomplete="name">
+<label for="n">Số người đi cùng (tính cả bạn)</label>
+<select id="n"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+<div class="row">
+<button class="yes" id="yes">Mình sẽ đến</button>
+<button class="no" id="no">Rất tiếc, mình bận</button>
+</div>
+<p id="msg" role="status"></p>
+<p class="note">Bấm nút để gửi câu trả lời cho chủ tiệc.</p>
+</div>
+
+<h2>Gửi lời chúc cho Hạt Tươi</h2>
+<div class="rsvp">
+<label for="wname">Tên của bạn (không bắt buộc)</label>
+<input id="wname" placeholder="Ví dụ: Minh Anh" autocomplete="name">
+<label for="wtext">Lời chúc</label>
+<textarea id="wtext" placeholder="Chúc Hạt Tươi tròn 1 tuổi thật vui..."></textarea>
+<button class="yes" id="wsend" type="button" style="width:100%">Gửi lời chúc</button>
+<p id="wmsg" role="status" style="margin:14px 0 0;font-weight:500;min-height:1.6em"></p>
+</div>
+
+<footer>Hẹn gặp bạn tại 23 Nguyễn Văn Trỗi, thành phố Vinh<br><a href="https://phatphatr.github.io/hat-tuoi-cafe/" style="color:inherit">Xem trang Hạt Tươi Cafe</a></footer>
+</div>
+
+<script>
+var T=new Date(2026,10,22,18,0,0).getTime();
+function $(i){return document.getElementById(i)}
+function tick(){
+var l=T-Date.now();
+if(l<=0){document.querySelector(".count").hidden=true;$("done").hidden=false;return}
+var s=Math.floor(l/1000);
+$("d").textContent=Math.floor(s/86400);
+$("h").textContent=Math.floor(s%86400/3600);
+$("m").textContent=Math.floor(s%3600/60);
+$("s").textContent=s%60;
+}
+tick();setInterval(tick,1000);
+var APPS_SCRIPT_URL="";
+function esc(t){var d=document.createElement("div");d.textContent=t;return d.innerHTML}
+function sendToHost(p,ok,fail){
+if(!APPS_SCRIPT_URL){fail();return}
+fetch(APPS_SCRIPT_URL,{method:"POST",body:JSON.stringify(p)})
+.then(function(r){return r.json()})
+.then(function(j){if(j&&j.ok)ok();else fail()})
+.catch(fail)
+}
+var ZALO='<a href="https://zalo.me/0367308856" target="_blank" rel="noopener">nhắn Zalo cho chủ tiệc</a>';
+
+function reply(ok){
+var nm=$("name").value.trim();
+if(!nm){$("msg").textContent="Hãy nhập tên của bạn trước nhé.";$("name").focus();return}
+var n=+$("n").value;
+$("yes").disabled=true;$("no").disabled=true;
+function free(){$("yes").disabled=false;$("no").disabled=false}
+sendToHost({type:"rsvp",name:nm,coming:ok?"Có":"Không",guests:ok?n:0},
+function(){free();$("msg").textContent=ok?"Cảm ơn "+nm+"! Hẹn gặp bạn"+(n>1?" cùng "+(n-1)+" người đi kèm":"")+" vào tối 22/11 nhé.":"Tiếc quá "+nm+", hẹn bạn dịp khác nhé!"},
+function(){free();$("msg").innerHTML="Chưa gửi tự động được. Bạn "+ZALO+" để báo "+(ok?"bạn sẽ đến":"bạn bận")+" ("+esc(nm)+(ok?", "+n+" người":"")+") nhé."});
+}
+$("yes").onclick=function(){reply(true)};
+$("no").onclick=function(){reply(false)};
+
+$("wsend").onclick=function(){
+var nm=$("wname").value.trim(),tx=$("wtext").value.trim();
+if(!tx){$("wmsg").textContent="Hãy viết vài dòng lời chúc nhé.";$("wtext").focus();return}
+$("wsend").disabled=true;
+sendToHost({type:"loichuc",name:nm||"Khách ẩn danh",detail:tx},
+function(){$("wsend").disabled=false;$("wmsg").textContent="Cảm ơn lời chúc của bạn! Hạt Tươi đã nhận được.";$("wtext").value=""},
+function(){$("wsend").disabled=false;$("wmsg").innerHTML="Chưa gửi tự động được. Bạn "+ZALO+" kèm lời chúc nhé."});
+};
+
+$("share").onclick=function(){
+var u=location.href,d={title:document.title,text:"Mời bạn dự sinh nhật 1 tuổi của Hạt Tươi Cafe, 18:00 ngày 22/11",url:u};
+function copy(){try{navigator.clipboard.writeText(u).then(function(){$("shareMsg").textContent="Đã sao chép link, bạn dán vào Zalo hoặc Messenger nhé."},function(){$("shareMsg").textContent="Link thiệp: "+u})}catch(e){$("shareMsg").textContent="Link thiệp: "+u}}
+if(navigator.share){navigator.share(d).catch(function(er){if(!er||er.name!=="AbortError")copy()})}else copy();
+};
+</script>
+</body>
+</html>
