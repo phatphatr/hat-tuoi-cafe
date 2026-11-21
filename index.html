@@ -90,6 +90,79 @@ details p{margin:10px 0 0;color:var(--muted)}
 .ok textarea{min-height:130px;margin-bottom:10px;font-size:14px}
 @media(max-width:720px){.hero{grid-template-columns:1fr}.sun{max-width:220px;order:-1}.story{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){aside{transition:none}}
+  /* Vòng quay may mắn */
+.lucky-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 24px;
+  margin: 40px 0;
+  text-align: center;
+}
+.lucky-section p {
+  color: var(--muted);
+}
+.wheel-wrap {
+  width: min(310px, 85vw);
+  aspect-ratio: 1;
+  margin: 25px auto;
+  position: relative;
+}
+.wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 7px solid #8a5a2b;
+  background: conic-gradient(
+    #e0a526 0deg 45deg,
+    #f5e5c5 45deg 90deg,
+    #8a5a2b 90deg 135deg,
+    #f5e5c5 135deg 180deg,
+    #e0a526 180deg 225deg,
+    #f5e5c5 225deg 270deg,
+    #8a5a2b 270deg 315deg,
+    #f5e5c5 315deg 360deg
+  );
+  position: relative;
+  transition: transform 4s cubic-bezier(.12,.75,.18,1);
+}
+.wheel-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 75px;
+  margin-left: -37px;
+  margin-top: -12px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #1b2a22;
+}
+.wheel-label:nth-child(1){transform: rotate(22.5deg) translateY(-95px)}
+.wheel-label:nth-child(2){transform: rotate(67.5deg) translateY(-95px)}
+.wheel-label:nth-child(3){transform: rotate(112.5deg) translateY(-95px)}
+.wheel-label:nth-child(4){transform: rotate(157.5deg) translateY(-95px)}
+.wheel-label:nth-child(5){transform: rotate(202.5deg) translateY(-95px)}
+.wheel-label:nth-child(6){transform: rotate(247.5deg) translateY(-95px)}
+.wheel-label:nth-child(7){transform: rotate(292.5deg) translateY(-95px)}
+.wheel-label:nth-child(8){transform: rotate(337.5deg) translateY(-95px)}
+.wheel-pointer {
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 28px solid #e8556d;
+}
+#spinBtn {
+  border: 0;
+}
+#spinResult {
+  font-weight: 700;
+  margin-top: 15px;
+}
 </style>
 </head>
 <body><div style="background:#e0a526;color:#1b2a22;text-align:center;font-weight:600;font-size:14px;padding:8px 16px">Trang thử nghiệm, chưa nhận đơn thật.</div>
@@ -129,7 +202,27 @@ Miễn phí vận chuyển cho đơn từ 300.000đ. Rang theo đơn, giao trong
 
 
 
+<section class="lucky-section">
+  <h2>🎁 Vòng quay may mắn</h2>
+  <p>Thử vận may cùng Hạt Tươi Cafe nhé!</p>
 
+  <div class="wheel-wrap">
+    <div class="wheel-pointer"></div>
+    <div class="wheel" id="luckyWheel">
+      <span class="wheel-label">Giảm 5%</span>
+      <span class="wheel-label">Tặng topping</span>
+      <span class="wheel-label">Giảm 10%</span>
+      <span class="wheel-label">Chúc may mắn</span>
+      <span class="wheel-label">Quà nhỏ</span>
+      <span class="wheel-label">Thử lại</span>
+      <span class="wheel-label">Ưu đãi</span>
+      <span class="wheel-label">Vui vẻ</span>
+    </div>
+  </div>
+
+  <button class="cta" id="spinBtn">QUAY NGAY</button>
+  <p id="spinResult" aria-live="polite"></p>
+</section>
 <h2 id="khaosat">Chia sẻ trải nghiệm của bạn</h2>
 <div class="survey">
 <h3>Khảo sát mức độ hài lòng</h3>
@@ -289,6 +382,57 @@ sendToShop({type:'gopy',name:nm,detail:t},
 function(){sb.disabled=false;$('sOk').textContent='Cảm ơn bạn đã góp ý! Mình đã nhận được.';$('sOk').hidden=false},
 function(){sb.disabled=false;deliver('sOk',t,'Góp ý về sản phẩm Hạt Tươi Cafe','Chưa gửi tự động được. Bấm “Mở Zalo” hoặc “Gửi email” để gửi góp ý cho mình nhé.');$('sOk').hidden=false});
 };
+  var spinBtn = document.getElementById("spinBtn");
+var luckyWheel = document.getElementById("luckyWheel");
+var spinResult = document.getElementById("spinResult");
+
+var prizes = [
+  "Giảm giá 5%",
+  "Tặng topping",
+  "Giảm giá 10%",
+  "Chúc bạn may mắn",
+  "Tặng quà nhỏ",
+  "Thử lại lần sau",
+  "Nhận ưu đãi",
+  "Chúc bạn vui vẻ"
+];
+
+var currentRotation = 0;
+var isSpinning = false;
+
+spinBtn.addEventListener("click", function () {
+  if (isSpinning) return;
+
+  isSpinning = true;
+  spinBtn.disabled = true;
+  spinResult.textContent = "Vòng quay đang chạy...";
+
+  var index = Math.floor(Math.random() * prizes.length);
+  var target = (360 - (index * 45 + 22.5) + 360) % 360;
+
+  luckyWheel.style.transition = "none";
+  luckyWheel.style.transform =
+    "rotate(" + (currentRotation % 360) + "deg)";
+
+  luckyWheel.offsetWidth;
+
+  var extra = 5 * 360 +
+    ((target - (currentRotation % 360) + 360) % 360);
+
+  currentRotation += extra;
+
+  luckyWheel.style.transition =
+    "transform 4s cubic-bezier(.12,.75,.18,1)";
+  luckyWheel.style.transform =
+    "rotate(" + currentRotation + "deg)";
+
+  setTimeout(function () {
+    spinResult.textContent =
+      "🎉 Kết quả của bạn: " + prizes[index] + "!";
+    spinBtn.disabled = false;
+    isSpinning = false;
+  }, 4200);
+});
 </script>
 </body>
 </html>
